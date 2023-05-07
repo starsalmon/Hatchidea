@@ -18,13 +18,13 @@ TFT_eSPI tft =  TFT_eSPI();
 
 void show_yes()
 {
-    tft.pushImage(0, 0, 128, 128, gImage_image_yes);
+    tft.pushImage(0, 0, 128, 128, image_yes);
     delay(20);
 }
 
 void show_no()
 {
-    tft.pushImage(0, 0, 128, 128, gImage_image_no);
+    tft.pushImage(0, 0, 128, 128, image_no);
     delay(20);
 }
 
@@ -37,6 +37,7 @@ void setup()
 
     tft.begin();
     tft.setRotation(2);
+    tft.setSwapBytes(true); // Required when using pushImage
 
     pinMode(PIN_BTN_L, INPUT_PULLUP);
     pinMode(PIN_BTN_R, INPUT_PULLUP);
