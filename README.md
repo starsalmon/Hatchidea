@@ -2,4 +2,4 @@
 
 ## Description
 
-Coding challenge on the T-QT Pro - When a button is pressed, animate a chicken hatching from an egg then randomly show a thumbs up or thumbs down image.
+Code challenge on the t-qt pro - press a button to start an animated chicken hatching out of an egg then show a random thumbs up or thumbs down image.
