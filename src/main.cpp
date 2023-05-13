@@ -13,19 +13,40 @@
 #define PIN_LCD_BL           10
 
 uint button_time = 0;
+int brightness = 0;
 
 TFT_eSPI tft =  TFT_eSPI();
 
 void show_yes()
 {
     tft.pushImage(0, 0, 128, 128, image_yes);
-    delay(20);
+
+    for (brightness = 255; brightness >= 0; brightness--) { // decrease brightness
+        analogWrite(PIN_LCD_BL, brightness);  // set the LED brightness
+        delay(1);  // wait a little bit to see the effect
+    }
+
+    for (brightness = 0; brightness <= 255; brightness++) { // increase brightness
+        analogWrite(PIN_LCD_BL, brightness);  // set the LED brightness
+        delay(5);  // wait a little bit to see the effect
+    }
+
 }
 
 void show_no()
 {
     tft.pushImage(0, 0, 128, 128, image_no);
-    delay(20);
+
+    for (brightness = 255; brightness >= 0; brightness--) { // decrease brightness
+        analogWrite(PIN_LCD_BL, brightness);  // set the LED brightness
+        delay(1);  // wait a little bit to see the effect
+    }
+
+    for (brightness = 0; brightness <= 255; brightness++) { // increase brightness
+        analogWrite(PIN_LCD_BL, brightness);  // set the LED brightness
+        delay(5);  // wait a little bit to see the effect
+    }
+
 }
 
 
@@ -41,6 +62,7 @@ void setup()
 
     pinMode(PIN_BTN_L, INPUT_PULLUP);
     pinMode(PIN_BTN_R, INPUT_PULLUP);
+    pinMode(PIN_LCD_BL, OUTPUT);
 }
 
 void loop()
@@ -50,8 +72,13 @@ void loop()
     {
         if (digitalRead(PIN_BTN_L) == 0)
         {
-            show_yes();
+            if (random(2) == 0) {
+                show_yes();
+            } else {
+                show_no();
+            }
             button_time = millis();
+
         }
         else if (digitalRead(PIN_BTN_R) == 0)
         {
@@ -60,8 +87,10 @@ void loop()
         }
         else
         {
+            analogWrite(PIN_LCD_BL, 255);
             tft.fillScreen(TFT_BLACK);
             button_time = millis();
+            
         }
     }
 
