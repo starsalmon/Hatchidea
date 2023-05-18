@@ -7,7 +7,7 @@
 #define DEBUG_ENABLED true
 
 #define SCREEN_WIDTH         128
-#define SCREEN_WIDTH         128
+#define SCREEN_HEIGHT         128
 
 #define PIN_BAT_VOLT         4
 #define PIN_BTN_L            0
